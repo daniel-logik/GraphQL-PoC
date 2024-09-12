@@ -1,0 +1,15 @@
+
+GraphQl Basics
+
+GraphQl is a query language based on querying and manipulating from underlying graphs
+
+Instead of REST's GET/POST/PUT/DELETE requests, GraphQL uses Queries and Mutations as their core request types
+** There are examples under resources/graphql-documents **
+ - Query: Similar to get requests, however more work is required in writing the query than is generally needed
+    with a rest endpoint
+    - When building a query pay attention to the schema - or Objects, and request exactly what fields you want
+       There are examples under resources/graphql-documents
+    - The ability to query specific data from objects is one of the main selling points of GraphQl, but it does
+        push some complexity onto the query writing
+ - Mutation: These requests cover POST/PUT/DELETE REST functionality -- any modifying requests are mutations
+    - These mutations are defined by the API and we essentially just call their functions to submit modifications

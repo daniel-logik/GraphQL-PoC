@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: graph-ql-poc
+
+server:
+  port:
+    8080
+graphql:
+  client:
+    url: http://swapi-graphql.netlify.app/.netlify/functions/index

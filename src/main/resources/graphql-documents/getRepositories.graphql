@@ -1,0 +1,15 @@
+# Since I haven't set up the schema that this query references, IntelliJ thinks its bad -- however it works
+query getRepositories ($number_of_repos:Int!) {
+    viewer {
+        repositories(first: $number_of_repos) {
+            totalCount
+            nodes {
+                nameWithOwner
+            }
+            pageInfo {
+                endCursor
+                hasNextPage
+            }
+        }
+    }
+}

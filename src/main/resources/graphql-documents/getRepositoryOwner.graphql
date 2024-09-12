@@ -1,0 +1,13 @@
+query getRepositoryOwner($login:String!){
+    repositoryOwner(login:$login){
+        id
+        login
+        repositories(first:1) {
+            edges {
+                node {
+                    id
+                }
+            }
+        }
+    }
+}
