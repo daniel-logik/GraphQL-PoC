@@ -1,14 +1,13 @@
 package io.logik.graph_ql_poc.service;
 
+import io.logik.graph_ql_poc.models.github.Repositories;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.graphql.GraphQlRequest;
 import org.springframework.graphql.client.HttpGraphQlClient;
-import org.springframework.graphql.support.DefaultGraphQlRequest;
+
 import org.springframework.stereotype.Service;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Log4j2
@@ -36,16 +35,16 @@ public class GitHubClientService {
         log.info("Token Set for Github Requests");
     }
 
-    public Object getRepository(long numberOfRepos) {
+    public Repositories getRepository(long numberOfRepos) {
         Map<String, Object> variables = Map.of("number_of_repos", numberOfRepos);
 
         log.info("Sending getRepository Query");
 
-        Object response = gitGraphQlClient
+        Repositories response = gitGraphQlClient
                 .documentName("getRepositories")    // This references graphql files under resources/graphql-documents
                 .variables(variables)               // Setting variables with a Map
-                .retrieveSync("")              // Will return the whole object
-                .toEntity(Object.class);            // Map to Object to not have to set up Types to map to --
+                .retrieveSync("viewer.repositories")              // Will return the whole object
+                .toEntity(Repositories.class);            // Map to Object to not have to set up Types to map to --
 
         log.debug(response);
 
