@@ -29,7 +29,7 @@ class GitHubClientServiceTest {
 
     @Test
     void getRepository() {
-        mockGraphClient();
+        mockGraphClientForGet();
 
         Repositories response = gitHubClientService.getRepository(3);
         assertThat(response.getTotalCount()).isEqualTo(2);
@@ -53,7 +53,28 @@ class GitHubClientServiceTest {
         assertThat(ownerId).isNotEmpty();
     }
 
-    private void mockGraphClient() {
+    @Test
+    void createRepository() {
+        GraphQlClient.RequestSpec requestSpec = Mockito.mock(GraphQlClient.RequestSpec.class);
+        GraphQlClient.RetrieveSyncSpec retrieveSpec = Mockito.mock(GraphQlClient.RetrieveSyncSpec.class);
+
+        // mock for getOwnerId
+        when(mockGraphQlClient.documentName("getRepositoryOwner")).thenReturn(requestSpec);
+        when(requestSpec.variable(any(), any())).thenReturn(requestSpec);
+        when(requestSpec.retrieveSync("repositoryOwner.id")).thenReturn(retrieveSpec);
+        when(retrieveSpec.toEntity(String.class)).thenReturn("fakeIdIsHere");
+        // mock for create
+        when(mockGraphQlClient.documentName("createRepository")).thenReturn(requestSpec);
+        when(requestSpec.variables(any())).thenReturn(requestSpec);
+        when(requestSpec.retrieveSync("")).thenReturn(retrieveSpec);
+        when(retrieveSpec.toEntity(Object.class)).thenReturn(new RepositoryResponse());
+
+        Object repoOut = gitHubClientService.createRepository("daniel", "repoName");
+
+        assertThat(repoOut).isNotNull();
+    }
+
+    private void mockGraphClientForGet() {
         Repositories expectedResponse = new Repositories();
         RepositoryResponse[] repos = new RepositoryResponse[2];
         repos[0] = new RepositoryResponse();
