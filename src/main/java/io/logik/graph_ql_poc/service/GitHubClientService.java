@@ -1,5 +1,6 @@
 package io.logik.graph_ql_poc.service;
 
+import io.logik.graph_ql_poc.models.github.CreateRepositoryRequestVariables;
 import io.logik.graph_ql_poc.models.github.Repositories;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.log4j.Log4j2;
@@ -66,10 +67,11 @@ public class GitHubClientService {
 
         log.info("Attempting Repository Creation");
         String id = getRepositoryOwnerID(repoOwner);
-        Map<String, Object> variables = Map.of("loginId", id, "repoName", repoName);
+        // Map<String, Object> variables = Map.of("loginId", id, "repoName", repoName);
+        CreateRepositoryRequestVariables variables = new CreateRepositoryRequestVariables(id, repoName);
         Object response = gitGraphQlClient
                 .documentName("createRepository")
-                .variables(variables)
+                .variables(variables.toVariables())
                 .retrieveSync("")
                 .toEntity(Object.class);
 
