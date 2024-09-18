@@ -1,4 +1,4 @@
-package io.logik.graph_ql_poc.models.dto;
+package io.logik.graph_ql_poc.models.request;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

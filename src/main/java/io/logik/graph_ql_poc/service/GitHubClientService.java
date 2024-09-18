@@ -1,6 +1,6 @@
 package io.logik.graph_ql_poc.service;
 
-import io.logik.graph_ql_poc.models.github.CreateRepositoryRequestVariables;
+import io.logik.graph_ql_poc.models.request.CreateRepositoryRequestVariables;
 import io.logik.graph_ql_poc.models.github.Repositories;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.log4j.Log4j2;

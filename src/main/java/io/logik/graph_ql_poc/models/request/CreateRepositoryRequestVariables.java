@@ -1,14 +1,10 @@
-package io.logik.graph_ql_poc.models.github;
+package io.logik.graph_ql_poc.models.request;
 
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import io.logik.graph_ql_poc.models.dto.BaseGraphQlRequestVariables;
+import io.logik.graph_ql_poc.models.request.BaseGraphQlRequestVariables;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Map;
 
 @AllArgsConstructor
 @NoArgsConstructor
